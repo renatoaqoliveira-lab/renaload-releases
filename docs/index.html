@@ -27,13 +27,17 @@
         </p>
 
         <div class="acoes">
-          <!-- O href já funciona sem JavaScript: leva à página da última
-               versão. O script abaixo troca pelo arquivo direto. -->
-          <a class="botao" id="baixar"
-             href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest">
-            Baixar para Windows
+          <!-- Estado PADRÃO = download pausado. É de propósito: se o
+               JavaScript não rodar, a página não libera o download por
+               engano. Para reabrir, troque DOWNLOAD_LIBERADO para true
+               no script no fim do arquivo — só isso. -->
+          <a class="botao desativado" id="baixar" href="#" aria-disabled="true">
+            Download em breve
           </a>
-          <p class="detalhe" id="detalhe">Gratuito para testar · 10 downloads</p>
+          <p class="detalhe" id="detalhe">
+            Estamos finalizando o cadastro da loja. Fale no WhatsApp para
+            reservar a sua licença.
+          </p>
         </div>
       </div>
       <img class="mascote" src="assets/renaload_mascot.png" alt="">
@@ -95,9 +99,20 @@
     // fixos no HTML e o botão passou a dar erro 404 quando saiu a versão
     // seguinte, porque o arquivo antigo não existe na release nova.
     (function () {
+      // ⇩⇩ ÚNICA COISA A MUDAR PARA REABRIR O DOWNLOAD ⇩⇩
+      var DOWNLOAD_LIBERADO = false;
+      // ⇧⇧ troque para true quando a loja estiver no ar ⇧⇧
+
       var API = 'https://api.github.com/repos/renatoaqoliveira-lab/renaload-releases/releases/latest';
       var botao = document.getElementById('baixar');
       var detalhe = document.getElementById('detalhe');
+
+      if (!DOWNLOAD_LIBERADO) { return; }   // segue pausado
+      botao.classList.remove('desativado');
+      botao.removeAttribute('aria-disabled');
+      botao.textContent = 'Baixar para Windows';
+      botao.href = 'https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest';
+      detalhe.textContent = 'Gratuito para testar · 10 downloads';
 
       function tamanho(bytes) {
         return bytes ? (bytes / 1048576).toFixed(0) + ' MB · ' : '';

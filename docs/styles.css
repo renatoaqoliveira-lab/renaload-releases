@@ -111,6 +111,17 @@ h1 {
 
 .botao:hover { background: var(--marca-escura); transform: translateY(-1px); }
 
+/* Download pausado: continua visível (para a pessoa saber que existe),
+   mas sem virar link nem parecer clicável. */
+.botao.desativado {
+  background: var(--fundo-suave);
+  color: var(--texto-suave);
+  border: 1px solid var(--borda);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .botao.secundario {
   background: transparent;
   color: var(--marca);
