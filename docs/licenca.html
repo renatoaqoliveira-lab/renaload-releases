@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minha licença — Renaload</title>
+  <meta name="description" content="Recupere o token de ativação da sua licença do Renaload.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/renaload.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="./">
+      <img src="assets/renaload.png" alt="">
+      <span>Renaload</span>
+    </a>
+    <a class="link-topo" href="https://wa.me/5511970617781?text=Preciso%20de%20ajuda%20com%20a%20minha%20licen%C3%A7a%20do%20Renaload.">Preciso de ajuda</a>
+  </header>
+
+  <main>
+    <section class="capa" style="grid-template-columns:1fr">
+      <div class="capa-texto">
+        <h1>Sua licença</h1>
+        <p class="chamada">
+          Informe o e-mail da compra e o número do pedido para receber o
+          token de ativação.
+        </p>
+
+        <form id="form" class="formulario" autocomplete="on">
+          <label class="campo">
+            <span>E-mail usado na compra</span>
+            <input type="email" id="email" required inputmode="email"
+                   autocomplete="email" placeholder="voce@exemplo.com">
+          </label>
+          <label class="campo">
+            <span>Número do pedido</span>
+            <input type="text" id="pedido" required inputmode="numeric"
+                   placeholder="ex.: 123456789">
+            <small>Está no e-mail de confirmação do Mercado Pago.</small>
+          </label>
+          <button class="botao" type="submit" id="enviar">Ver minha licença</button>
+        </form>
+
+        <div id="resposta" class="resposta" hidden></div>
+      </div>
+    </section>
+
+    <section class="aviso">
+      <h2>Como ativar</h2>
+      <p>
+        Abra o Renaload, vá em <strong>Configurações → Licença</strong>, cole o
+        token e clique em Ativar. A ativação vincula a licença a este
+        computador e precisa de internet só nesta primeira vez.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Renaload · Windows</span>
+    <a href="./">Página inicial</a>
+  </footer>
+
+  <script>
+    (function () {
+      var API = 'https://pxbjjcerfmaninewmcol.supabase.co/rest/v1/rpc/licenca_do_comprador';
+      var CHAVE = 'sb_publishable_59ipdH9gADZXP0Ao5fWlog_Qw3SQ15l';
+
+      var form = document.getElementById('form');
+      var caixa = document.getElementById('resposta');
+      var botao = document.getElementById('enviar');
+
+      function mostrar(html, tipo) {
+        caixa.className = 'resposta ' + (tipo || '');
+        caixa.innerHTML = html;
+        caixa.hidden = false;
+      }
+
+      function escapar(t) {
+        return String(t).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;',
+                   '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('email').value.trim();
+        var pedido = document.getElementById('pedido').value.trim();
+        if (!email || !pedido) { return; }
+
+        botao.disabled = true;
+        botao.textContent = 'Procurando...';
+        mostrar('Consultando sua compra...', '');
+
+        fetch(API, {
+          method: 'POST',
+          headers: {
+            apikey: CHAVE,
+            Authorization: 'Bearer ' + CHAVE,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ p_email: email, p_pedido: pedido })
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d && d.ok && d.token) {
+              var aviso = d.ja_ativada
+                ? '<p class="obs">Esta licença já foi ativada em um computador. ' +
+                  'Se precisar trocar de máquina, fale com o suporte.</p>'
+                : '';
+              mostrar(
+                '<p class="ok">✓ Licença encontrada</p>' +
+                '<p class="obs">Copie o token abaixo e cole no Renaload em ' +
+                'Configurações → Licença.</p>' +
+                '<textarea readonly id="token" rows="4">' +
+                escapar(d.token) + '</textarea>' +
+                '<button class="botao secundario" type="button" id="copiar">' +
+                'Copiar token</button>' + aviso, 'boa');
+              document.getElementById('copiar').onclick = function () {
+                var t = document.getElementById('token');
+                t.select();
+                navigator.clipboard.writeText(t.value).then(function () {
+                  this.textContent = 'Copiado!';
+                }.bind(this)).catch(function () {
+                  document.execCommand('copy');
+                });
+              };
+            } else if (d && d.motivo === 'cancelada') {
+              mostrar('<p class="ruim">Esta licença foi cancelada.</p>' +
+                      '<p class="obs">Fale com o suporte pelo WhatsApp para ' +
+                      'regularizar.</p>', 'ruim');
+            } else {
+              mostrar('<p class="ruim">Não encontrei essa compra.</p>' +
+                      '<p class="obs">Confira se o e-mail e o número do pedido ' +
+                      'estão iguais aos do e-mail de confirmação. Pagamentos ' +
+                      'no Pix podem levar alguns minutos para constar. ' +
+                      'Se persistir, chame no WhatsApp.</p>', 'ruim');
+            }
+          })
+          .catch(function () {
+            mostrar('<p class="ruim">Não consegui consultar agora.</p>' +
+                    '<p class="obs">Verifique sua internet e tente de novo.</p>',
+                    'ruim');
+          })
+          .then(function () {
+            botao.disabled = false;
+            botao.textContent = 'Ver minha licença';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

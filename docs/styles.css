@@ -139,6 +139,72 @@ h1 {
 
 .mascote { width: 190px; max-width: 34vw; height: auto; }
 
+/* ── Formulário da página "Minha licença" ─────────────── */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 420px;
+  margin-top: 26px;
+}
+
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo span { font-size: 14px; font-weight: 600; }
+.campo small { font-size: 12.5px; color: var(--texto-suave); }
+
+.campo input {
+  font: inherit;
+  padding: 11px 13px;
+  color: var(--texto);
+  background: var(--fundo-suave);
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+}
+
+.campo input:focus-visible {
+  outline: 2px solid var(--marca);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.formulario .botao { border: 0; cursor: pointer; font: inherit;
+                     font-weight: 600; }
+.formulario .botao:disabled { opacity: .6; cursor: progress; }
+
+.resposta {
+  max-width: 560px;
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px solid var(--borda);
+  border-left-width: 3px;
+  border-radius: 10px;
+  background: var(--fundo-suave);
+  font-size: 14.5px;
+}
+
+.resposta.boa  { border-left-color: #16a34a; }
+.resposta.ruim { border-left-color: #dc2626; }
+.resposta p { margin: 0 0 8px; }
+.resposta .ok   { font-weight: 650; color: #16a34a; }
+.resposta .ruim { font-weight: 650; color: #dc2626; }
+.resposta .obs  { color: var(--texto-suave); font-size: 13.5px; }
+
+.resposta textarea {
+  width: 100%;
+  font: 13px/1.5 Consolas, "SF Mono", monospace;
+  color: var(--texto);
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 10px;
+  resize: vertical;
+  margin: 4px 0 12px;
+  word-break: break-all;
+}
+
+.resposta .botao { border: 0; cursor: pointer; font: inherit;
+                   font-weight: 600; font-size: 14px; }
+
 /* ── Plataformas ──────────────────────────────────────── */
 .plataformas {
   max-width: 960px;
