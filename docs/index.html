@@ -129,20 +129,54 @@
       </p>
     </section>
 
-    <section class="compra">
-      <h2>Teste antes de comprar</h2>
-      <p>
-        São 10 downloads gratuitos. Depois disso, a ativação é feita com um
-        token enviado pelo suporte e vale para o computador onde foi ativada.
+    <section class="planos">
+      <h2>Quanto custa</h2>
+      <p class="intro">
+        Teste com <strong>30 downloads gratuitos</strong>, sem cartão. Se
+        servir para você, escolha um plano — a licença vale para o
+        computador onde for ativada.
       </p>
-      <a class="botao secundario"
-         href="https://wa.me/5511970617781?text=Ol%C3%A1!%20Quero%20comprar%20uma%20licen%C3%A7a%20do%20Renaload.">
-        Falar no WhatsApp
-      </a>
-      <p class="detalhe">
+
+      <div class="grade-planos">
+        <div class="plano">
+          <h3>Mensal</h3>
+          <p class="valor">R$ 19,90<span> /mês</span></p>
+          <p class="equivale">Cancele quando quiser.</p>
+          <ul>
+            <li>Todos os recursos, sem limite de downloads</li>
+            <li>Atualizações enquanto a assinatura estiver ativa</li>
+            <li>Suporte pelo WhatsApp</li>
+          </ul>
+          <a class="botao secundario"
+             href="https://wa.me/5511970617781?text=Ol%C3%A1!%20Quero%20o%20plano%20mensal%20do%20Renaload%20(R%24%2019%2C90).">
+            Assinar mensal
+          </a>
+        </div>
+
+        <div class="plano destaque">
+          <span class="selo">MELHOR ESCOLHA</span>
+          <h3>Anual</h3>
+          <p class="valor">R$ 149<span> /ano</span></p>
+          <p class="equivale">Sai por R$ 12,42 por mês — você economiza R$ 90.</p>
+          <ul>
+            <li>Tudo do mensal, por 12 meses</li>
+            <li>No <strong>Pix</strong>, ativação na hora</li>
+            <li>Preço travado: não muda durante o ano</li>
+          </ul>
+          <a class="botao"
+             href="https://wa.me/5511970617781?text=Ol%C3%A1!%20Quero%20o%20plano%20anual%20do%20Renaload%20(R%24%20149).">
+            Assinar anual
+          </a>
+        </div>
+      </div>
+
+      <p class="nota-planos">
         Já comprou? <a href="licenca.html">Recupere o seu token de ativação</a>.
+        Precisa de ajuda para escolher?
+        <a href="https://wa.me/5511970617781?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20os%20planos%20do%20Renaload.">Fale no WhatsApp</a>.
       </p>
     </section>
+
   </main>
 
   <footer>
@@ -170,7 +204,7 @@
       botao.removeAttribute('aria-disabled');
       botao.textContent = 'Baixar para Windows';
       botao.href = 'https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest';
-      detalhe.textContent = 'Gratuito para testar · 10 downloads';
+      detalhe.textContent = 'Gratuito para testar · 30 downloads';
 
       function tamanho(bytes) {
         return bytes ? (bytes / 1048576).toFixed(0) + ' MB · ' : '';
@@ -186,7 +220,7 @@
           var versao = (rel.tag_name || '').replace(/^v/, '');
           detalhe.textContent =
             (versao ? 'Versão ' + versao + ' · ' : '') +
-            tamanho(exe && exe.size) + 'Gratuito para testar · 10 downloads';
+            tamanho(exe && exe.size) + 'Gratuito para testar · 30 downloads';
 
           // O arquivo .sha256 publicado junto da release permite conferir
           // que o instalador baixou inteiro. Mostramos o código discreto,

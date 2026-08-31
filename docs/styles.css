@@ -266,6 +266,108 @@ h1 {
 
 .compra .botao { margin-top: 18px; }
 
+/* ── Planos ───────────────────────────────────────────── */
+.planos {
+  max-width: 960px;
+  margin: 64px auto 0;
+  padding: 0 24px;
+}
+
+.planos h2 { font-size: 26px; margin: 0 0 8px; text-align: center; }
+
+.planos .intro {
+  margin: 0 auto 28px;
+  max-width: 540px;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.grade-planos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.plano {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  padding: 26px 24px;
+  background: var(--fundo);
+}
+
+/* O anual e o que interessa: Pix cai na hora, sem cartao para recusar
+   e sem cancelamento no meio do caminho. Por isso ele ganha a borda. */
+.plano.destaque {
+  border-color: var(--marca);
+  box-shadow: var(--sombra);
+}
+
+.plano .selo {
+  position: absolute;
+  top: -11px;
+  left: 24px;
+  background: var(--marca);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.plano h3 { margin: 0 0 4px; font-size: 15px; color: var(--texto-suave); font-weight: 600; }
+
+.plano .valor {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.plano .valor span { font-size: 16px; font-weight: 500; color: var(--texto-suave); }
+
+.plano .equivale { margin: 6px 0 0; font-size: 14px; color: var(--texto-suave); }
+
+.plano ul {
+  list-style: none;
+  margin: 18px 0 22px;
+  padding: 0;
+  font-size: 15px;
+}
+
+.plano li { padding-left: 22px; position: relative; margin-bottom: 8px; }
+
+.plano li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--marca);
+  font-weight: 700;
+}
+
+.plano .botao { margin-top: auto; text-align: center; }
+
+.plano .botao.secundario {
+  background: transparent;
+  color: var(--marca);
+  border: 1px solid var(--borda);
+  box-shadow: none;
+}
+
+.plano .botao.secundario:hover { background: var(--fundo-suave); }
+
+.nota-planos {
+  margin: 20px auto 0;
+  max-width: 620px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--texto-suave);
+}
+
 /* ── Rodapé ───────────────────────────────────────────── */
 footer {
   max-width: 960px;
