@@ -43,12 +43,12 @@
                JavaScript não rodar, a página não libera o download por
                engano. Para reabrir, troque DOWNLOAD_LIBERADO para true
                no script no fim do arquivo — só isso. -->
-          <a class="botao desativado" id="baixar" href="#" aria-disabled="true">
-            Download em breve
+          <a class="botao" id="baixar"
+             href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest">
+            Baixar para Windows
           </a>
           <p class="detalhe" id="detalhe">
-            Estamos finalizando o cadastro da loja. Fale no WhatsApp para
-            reservar a sua licença.
+            Gratuito para testar · 30 downloads
           </p>
         </div>
       </div>
@@ -192,8 +192,8 @@
     // seguinte, porque o arquivo antigo não existe na release nova.
     (function () {
       // ⇩⇩ ÚNICA COISA A MUDAR PARA REABRIR O DOWNLOAD ⇩⇩
-      var DOWNLOAD_LIBERADO = false;
-      // ⇧⇧ troque para true quando a loja estiver no ar ⇧⇧
+      var DOWNLOAD_LIBERADO = true;
+      // ⇧⇧ liberado em 31/08/2026, com a 1.7.0 publicada ⇧⇧
 
       var API = 'https://api.github.com/repos/renatoaqoliveira-lab/renaload-releases/releases/latest';
       var botao = document.getElementById('baixar');
