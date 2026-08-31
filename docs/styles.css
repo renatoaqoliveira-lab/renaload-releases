@@ -137,6 +137,16 @@ h1 {
   color: var(--texto-suave);
 }
 
+/* Código de verificação do instalador (SHA-256), abaixo do botão */
+.checksum {
+  margin: 6px 0 0;
+  font: 11px/1.5 Consolas, "Cascadia Mono", monospace;
+  color: var(--texto-suave);
+  word-break: break-all;
+  opacity: .75;
+  cursor: help;
+}
+
 .mascote { width: 190px; max-width: 34vw; height: auto; }
 
 /* ── Formulário da página "Minha licença" ─────────────── */
@@ -280,4 +290,85 @@ footer a { color: var(--texto-suave); }
   }
   .mascote { width: 140px; justify-self: center; }
   .botao { display: block; text-align: center; }
+}
+
+/* ── Seção do Estúdio ─────────────────────────────────────
+   Entrou junto com a marca nova: o site não contava que o app
+   passou a separar voz e instrumental. Faixa com cor de marca
+   para destacar sem competir com o botão de download. */
+.estudio {
+  max-width: 960px;
+  margin: 8px auto 0;
+  padding: 0 24px;
+}
+
+.estudio-texto {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--borda);
+  border-radius: 18px;
+  padding: 34px 32px;
+  background:
+    radial-gradient(120% 140% at 100% 0%,
+                    rgba(59, 130, 246, .16), transparent 60%),
+    var(--fundo-suave);
+}
+
+.etiqueta {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--marca);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 3px 11px;
+  margin-bottom: 14px;
+}
+
+.estudio h2 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  letter-spacing: -.02em;
+}
+
+.estudio p {
+  margin: 0 0 18px;
+  max-width: 62ch;
+  color: var(--texto-suave);
+}
+
+.lista-estudio {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 9px;
+}
+
+.lista-estudio li {
+  position: relative;
+  padding-left: 26px;
+  color: var(--texto-suave);
+  font-size: 15px;
+}
+
+/* marca de conferido desenhada em CSS: sem imagem, sem fonte de
+   ícone, e acompanha a cor da marca no claro e no escuro */
+.lista-estudio li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--marca);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 600px) {
+  .estudio-texto { padding: 26px 22px; }
+  .estudio h2 { font-size: 22px; }
 }

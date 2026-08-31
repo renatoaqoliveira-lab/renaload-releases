@@ -5,7 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Renaload — baixe e organize suas mídias no Windows</title>
   <meta name="description" content="Renaload para Windows: baixe e converta conteúdos próprios ou autorizados, com fila de downloads, qualidade até 4K e ativação por licença.">
-  <link rel="icon" href="assets/renaload.png">
+  <meta name="author" content="RenaCore Technologies">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/renaload.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/renaload_logo.png">
+  <meta property="og:title" content="Renaload — baixe tudo em um só lugar">
+  <meta property="og:description" content="Baixe áudio e vídeo de várias plataformas, separe voz e instrumental com IA, e organize tudo — num app só, para Windows.">
+  <meta property="og:image" content="https://renaload.com.br/assets/renaload_logo.png">
+  <meta property="og:url" content="https://renaload.com.br/">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://renaload.com.br/">
+  <meta name="theme-color" content="#3b82f6">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,10 +30,11 @@
   <main>
     <section class="capa">
       <div class="capa-texto">
-        <h1>Suas mídias, baixadas e organizadas.</h1>
+        <h1>Baixe tudo em um só lugar.</h1>
         <p class="chamada">
           Aplicativo para Windows que baixa e converte conteúdos próprios ou
           autorizados — áudio ou vídeo, um link por vez ou uma lista inteira.
+          E, quando precisar, separa a voz do instrumental.
         </p>
 
         <div class="acoes">
@@ -66,6 +77,23 @@
       </article>
     </section>
 
+    <section class="estudio">
+      <div class="estudio-texto">
+        <span class="etiqueta">Incluído</span>
+        <h2>E um estúdio junto.</h2>
+        <p>
+          Separe a voz do instrumental, trate áudio gravado em ambiente ruim,
+          tire eco e exporte no volume certo — tudo dentro do Renaload, e tudo
+          no seu computador. Nenhum áudio seu sai da máquina.
+        </p>
+        <ul class="lista-estudio">
+          <li>Voz e instrumental, ou quatro faixas separadas</li>
+          <li>Detecta andamento e tom, e gera letra sincronizada</li>
+          <li>Usa a placa de vídeo quando dá, e o processador quando não</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="aviso">
       <h2>Uso responsável</h2>
       <p>
@@ -85,11 +113,15 @@
          href="https://wa.me/5511970617781?text=Ol%C3%A1!%20Quero%20comprar%20uma%20licen%C3%A7a%20do%20Renaload.">
         Falar no WhatsApp
       </a>
+      <p class="detalhe">
+        Já comprou? <a href="licenca.html">Recupere o seu token de ativação</a>.
+      </p>
     </section>
   </main>
 
   <footer>
-    <span>Renaload · Windows</span>
+    <span>Renaload · RenaCore Technologies · Windows</span>
+    <a href="licenca.html">Minha licença</a>
     <a href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases">Todas as versões</a>
   </footer>
 
@@ -129,6 +161,28 @@
           detalhe.textContent =
             (versao ? 'Versão ' + versao + ' · ' : '') +
             tamanho(exe && exe.size) + 'Gratuito para testar · 10 downloads';
+
+          // O arquivo .sha256 publicado junto da release permite conferir
+          // que o instalador baixou inteiro. Mostramos o código discreto,
+          // logo abaixo do botão, só quando a release realmente tem um.
+          var hashAsset = (rel.assets || []).filter(function (a) {
+            return /\.sha256$/i.test(a.name);
+          })[0];
+          if (!hashAsset) { return; }
+          fetch(hashAsset.browser_download_url)
+            .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+            .then(function (txt) {
+              var hex = (txt.trim().split(/\s+/)[0] || '');
+              if (!/^[0-9a-f]{64}$/i.test(hex)) { return; }
+              var p = document.createElement('p');
+              p.className = 'checksum';
+              p.title = 'No PowerShell: Get-FileHash .\\' +
+                        (exe ? exe.name : 'instalador.exe') +
+                        ' -Algorithm SHA256';
+              p.textContent = 'SHA-256: ' + hex;
+              detalhe.parentNode.insertBefore(p, detalhe.nextSibling);
+            })
+            .catch(function () { /* sem checksum, sem alarde */ });
         })
         .catch(function () {
           // Sem internet ou API fora do ar: o link continua levando à
