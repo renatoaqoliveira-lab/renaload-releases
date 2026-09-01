@@ -50,6 +50,31 @@
           <p class="detalhe" id="detalhe">
             Gratuito para testar · 30 downloads
           </p>
+
+          <!-- Avisar ANTES do susto. O instalador ainda nao e assinado
+               digitalmente, e o Windows mostra uma tela roxa dizendo
+               "fornecedor desconhecido". Quem e avisado clica em executar;
+               quem e pego de surpresa fecha e some. -->
+          <details class="aviso-windows">
+            <summary>O Windows vai avisar que o app é de “fornecedor desconhecido”</summary>
+            <p>
+              É esperado, e não quer dizer que tem algo errado com o arquivo.
+              O Windows mostra esse aviso para todo programa que ainda não tem
+              <strong>assinatura digital</strong> — um certificado que custa
+              caro e que a gente vai comprar quando o Renaload crescer.
+            </p>
+            <p>
+              Para instalar, clique em <strong>Mais informações</strong> e
+              depois em <strong>Executar assim mesmo</strong>.
+            </p>
+            <p>
+              Se quiser conferir que o arquivo é mesmo o nosso e chegou
+              inteiro, cada versão publica o código SHA-256 do instalador na
+              <a href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest">página
+              da versão</a>, junto com o comando para verificar no seu
+              computador.
+            </p>
+          </details>
         </div>
       </div>
       <img class="mascote" src="assets/renaload_mascot.png" alt="">

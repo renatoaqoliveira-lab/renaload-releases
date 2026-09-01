@@ -137,6 +137,26 @@ h1 {
   color: var(--texto-suave);
 }
 
+/* Aviso do Windows sobre "fornecedor desconhecido".
+   Fechado por padrao: quem nao se importa nem repara; quem se assusta
+   com a tela roxa acha a explicacao aqui, antes de desistir. */
+.aviso-windows {
+  margin: 14px 0 0;
+  max-width: 46ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+.aviso-windows > summary {
+  cursor: pointer;
+  color: var(--texto-suave);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.aviso-windows > summary:hover { color: var(--texto); }
+.aviso-windows p { margin: 10px 0 0; }
+.aviso-windows a { color: var(--marca); }
+
 /* Código de verificação do instalador (SHA-256), abaixo do botão */
 .checksum {
   margin: 6px 0 0;
