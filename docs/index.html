@@ -48,11 +48,17 @@
                JavaScript não rodar, a página não libera o download por
                engano. Para reabrir, troque DOWNLOAD_LIBERADO para true
                no script no fim do arquivo — só isso. -->
-          <a class="botao desativado" id="baixar" href="#" aria-disabled="true">
-            Download em breve
+          <!-- O estado PADRAO deixou de ser "em breve": com o download
+               liberado, um texto de obra em andamento e justamente o que
+               o AdSense recusou ("telas que estao em construcao"). Se o
+               JavaScript nao rodar, o visitante ainda cai na pagina de
+               versoes, que funciona sem script. -->
+          <a class="botao" id="baixar"
+             href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest">
+            Baixar para Windows
           </a>
           <p class="detalhe" id="detalhe">
-            Estamos finalizando os últimos ajustes. Volte em breve.
+            Gratuito para testar · 30 downloads
           </p>
 
           <!-- Avisar ANTES do susto. O instalador ainda nao e assinado
@@ -210,6 +216,9 @@
 
   <footer>
     <span>Renaload · RenaCore Technologies · Windows</span>
+    <a href="privacidade.html">Privacidade</a>
+    <a href="termos.html">Termos de uso</a>
+    <a href="contato.html">Contato</a>
     <a href="licenca.html">Minha licença</a>
     <a href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases">Todas as versões</a>
   </footer>
@@ -221,9 +230,13 @@
     // seguinte, porque o arquivo antigo não existe na release nova.
     (function () {
       // ⇩⇩ ÚNICA COISA A MUDAR PARA REABRIR O DOWNLOAD ⇩⇩
-      var DOWNLOAD_LIBERADO = false;
-      // ⇧⇧ fechado em 01/09/2026: a 1.7.0 falha ao baixar em
-      //    maquina limpa (cookies). Reabrir com a 1.7.1. ⇧⇧
+      var DOWNLOAD_LIBERADO = true;
+      // ⇧⇧ reaberto em 02/09/2026, na 1.7.9. O motivo do fechamento era
+      //    a 1.7.0 falhar em maquina limpa por causa dos cookies: a
+      //    prova de "conectado" era o TAMANHO do arquivo de cookies, e
+      //    nao um cookie de sessao com valor. Isso foi corrigido, e a
+      //    1.7.9 leva a correcao junto com o yt-dlp 2026.8.19, que
+      //    resolve o 403 do YouTube. ⇧⇧
 
       var API = 'https://api.github.com/repos/renatoaqoliveira-lab/renaload-releases/releases/latest';
       var botao = document.getElementById('baixar');
