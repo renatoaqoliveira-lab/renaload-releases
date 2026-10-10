@@ -60,6 +60,8 @@ body {
 
 .marca img { width: 28px; height: 28px; border-radius: 7px; }
 
+.topo nav { display: flex; gap: 22px; }
+
 .link-topo {
   color: var(--texto-suave);
   text-decoration: none;
@@ -72,7 +74,7 @@ body {
 .capa {
   max-width: 960px;
   margin: 0 auto;
-  padding: 48px 24px 8px;
+  padding: 72px 24px 8px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
@@ -94,7 +96,7 @@ h1 {
   color: var(--texto-suave);
 }
 
-.acoes { margin-top: 28px; }
+.acoes { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
 
 .botao {
   display: inline-block;
@@ -132,30 +134,33 @@ h1 {
 .botao.secundario:hover { background: var(--fundo-suave); }
 
 .detalhe {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   font-size: 14px;
   color: var(--texto-suave);
 }
 
-/* Aviso do Windows sobre "fornecedor desconhecido".
+/* Aviso da primeira abertura (Windows: "fornecedor desconhecido";
+   Mac: "não é possível verificar o desenvolvedor").
    Fechado por padrao: quem nao se importa nem repara; quem se assusta
    com a tela roxa acha a explicacao aqui, antes de desistir. */
-.aviso-windows {
-  margin: 14px 0 0;
-  max-width: 46ch;
+.detalhe a { color: var(--marca); }
+
+.primeira-vez {
+  margin: 10px 0 0;
+  max-width: 52ch;
   font-size: 13px;
   line-height: 1.6;
   color: var(--texto-suave);
 }
-.aviso-windows > summary {
+.primeira-vez > summary {
   cursor: pointer;
   color: var(--texto-suave);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.aviso-windows > summary:hover { color: var(--texto); }
-.aviso-windows p { margin: 10px 0 0; }
-.aviso-windows a { color: var(--marca); }
+.primeira-vez > summary:hover { color: var(--texto); }
+.primeira-vez p { margin: 10px 0 0; }
+.primeira-vez a { color: var(--marca); }
 
 /* Código de verificação do instalador (SHA-256), abaixo do botão */
 .checksum {
@@ -244,30 +249,25 @@ h1 {
   color: var(--texto-suave);
 }
 
-/* ── Cartões ──────────────────────────────────────────── */
-.cartoes {
+/* ── Recursos ─────────────────────────────────────────
+   Quatro, sem caixa em volta: menos moldura, mais respiro. */
+.recursos {
   max-width: 960px;
-  margin: 48px auto 0;
+  margin: 72px auto 0;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 28px 32px;
 }
 
-.cartoes article {
-  background: var(--fundo-suave);
-  border: 1px solid var(--borda);
-  border-radius: 12px;
-  padding: 20px;
-}
-
-.cartoes h2 { margin: 0 0 6px; font-size: 16px; font-weight: 650; }
-.cartoes p { margin: 0; font-size: 15px; color: var(--texto-suave); }
+.recursos article { border-top: 2px solid var(--marca); padding-top: 16px; }
+.recursos h2 { margin: 0 0 6px; font-size: 16px; font-weight: 650; }
+.recursos p { margin: 0; font-size: 15px; color: var(--texto-suave); }
 
 /* ── Aviso legal e compra ─────────────────────────────── */
 .aviso, .compra {
   max-width: 960px;
-  margin: 40px auto 0;
+  margin: 72px auto 0;
   padding: 0 24px;
 }
 
@@ -279,8 +279,8 @@ h1 {
 
 .aviso p, .compra p {
   margin: 0;
-  max-width: 68ch;
-  font-size: 15px;
+  max-width: 72ch;
+  font-size: 14px;
   color: var(--texto-suave);
 }
 
@@ -288,8 +288,8 @@ h1 {
 
 /* ── Planos ───────────────────────────────────────────── */
 .planos {
-  max-width: 960px;
-  margin: 64px auto 0;
+  max-width: 820px;
+  margin: 96px auto 0;
   padding: 0 24px;
 }
 
@@ -395,8 +395,9 @@ footer {
   padding: 24px;
   border-top: 1px solid var(--borda);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px 16px;
   font-size: 14px;
   color: var(--texto-suave);
 }
@@ -412,85 +413,14 @@ footer a { color: var(--texto-suave); }
   }
   .mascote { width: 140px; justify-self: center; }
   .botao { display: block; text-align: center; }
+  .acoes .botao { flex: 1 1 100%; }
+  .topo nav { gap: 16px; }
 }
 
-/* ── Seção do Estúdio ─────────────────────────────────────
-   Entrou junto com a marca nova: o site não contava que o app
-   passou a separar voz e instrumental. Faixa com cor de marca
-   para destacar sem competir com o botão de download. */
-.estudio {
-  max-width: 960px;
-  margin: 8px auto 0;
-  padding: 0 24px;
-}
-
-.estudio-texto {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--borda);
-  border-radius: 18px;
-  padding: 34px 32px;
-  background:
-    radial-gradient(120% 140% at 100% 0%,
-                    rgba(59, 130, 246, .16), transparent 60%),
-    var(--fundo-suave);
-}
-
-.etiqueta {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--marca);
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  padding: 3px 11px;
-  margin-bottom: 14px;
-}
-
-.estudio h2 {
-  margin: 0 0 10px;
-  font-size: 26px;
-  letter-spacing: -.02em;
-}
-
-.estudio p {
-  margin: 0 0 18px;
-  max-width: 62ch;
+/* "Em breve" vale também para o botão secundário (o do Mac): sem isto
+   a cor azul do secundário vencia e o botão parecia clicável. */
+.botao.secundario.desativado {
   color: var(--texto-suave);
-}
-
-.lista-estudio {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 9px;
-}
-
-.lista-estudio li {
-  position: relative;
-  padding-left: 26px;
-  color: var(--texto-suave);
-  font-size: 15px;
-}
-
-/* marca de conferido desenhada em CSS: sem imagem, sem fonte de
-   ícone, e acompanha a cor da marca no claro e no escuro */
-.lista-estudio li::before {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 7px;
-  width: 5px;
-  height: 10px;
-  border: solid var(--marca);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-@media (max-width: 600px) {
-  .estudio-texto { padding: 26px 22px; }
-  .estudio h2 { font-size: 22px; }
+  background: var(--fundo-suave);
+  border-style: dashed;
 }

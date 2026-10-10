@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Renaload — baixe e organize os seus conteúdos no Windows</title>
-  <meta name="description" content="Renaload para Windows: baixe e converta conteúdos próprios, autorizados ou de livre distribuição, com fila de downloads, qualidade até 4K, legendas e busca por perfil no Instagram e TikTok.">
+  <title>Renaload — baixe e organize os seus conteúdos no Windows e no Mac</title>
+  <meta name="description" content="Renaload para Windows e Mac: baixe e converta conteúdos próprios, autorizados ou de livre distribuição, com fila de downloads, qualidade até 4K, legendas e busca por perfil no Instagram e TikTok.">
   <meta name="author" content="Renaload">
   <link rel="icon" href="assets/favicon.ico" sizes="any">
   <link rel="icon" href="assets/renaload.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/renaload_logo.png">
   <meta property="og:title" content="Renaload — baixe e organize os seus conteúdos">
-  <meta property="og:description" content="Baixe áudio e vídeo de conteúdos próprios ou autorizados, ache as publicações de um perfil e organize tudo — num app só, para Windows.">
+  <meta property="og:description" content="Baixe áudio e vídeo de conteúdos próprios ou autorizados, ache as publicações de um perfil e organize tudo — num app só, para Windows e Mac.">
   <meta property="og:image" content="https://renaload.com.br/assets/renaload_logo.png">
   <meta property="og:url" content="https://renaload.com.br/">
   <meta property="og:type" content="website">
@@ -29,7 +29,10 @@
       <img src="assets/renaload.png" alt="">
       <span>Renaload</span>
     </a>
-    <a class="link-topo" href="#planos">Comprar licença</a>
+    <nav>
+      <a class="link-topo" href="#recursos">Recursos</a>
+      <a class="link-topo" href="#planos">Preços</a>
+    </nav>
   </header>
 
   <main>
@@ -37,55 +40,51 @@
       <div class="capa-texto">
         <h1>Baixe e organize os seus conteúdos.</h1>
         <p class="chamada">
-          Aplicativo para Windows que baixa e converte conteúdos
-          <strong>próprios, autorizados ou de livre distribuição</strong> —
-          áudio ou vídeo, um link por vez ou uma lista inteira — inclusive
-          as publicações de um perfil inteiro.
+          Áudio ou vídeo, um link ou um perfil inteiro — de conteúdos
+          <strong>próprios, autorizados ou de livre distribuição</strong>.
         </p>
 
-        <div class="acoes">
-          <!-- Estado PADRÃO = download pausado. É de propósito: se o
-               JavaScript não rodar, a página não libera o download por
-               engano. Para reabrir, troque DOWNLOAD_LIBERADO para true
-               no script no fim do arquivo — só isso. -->
-          <!-- O estado PADRAO deixou de ser "em breve": com o download
-               liberado, um texto de obra em andamento e justamente o que
-               o AdSense recusou ("telas que estao em construcao"). Se o
-               JavaScript nao rodar, o visitante ainda cai na pagina de
-               versoes, que funciona sem script. -->
-          <a class="botao" id="baixar"
-             href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest">
+        <!-- Os dois botões existem sempre. O script do fim da página põe
+             na frente o do sistema de quem visita e aponta cada um para o
+             arquivo certo da última versão. Sem script, os dois levam à
+             página de versões, que funciona sozinha. -->
+        <div class="acoes" id="acoes">
+          <a class="botao" id="baixar-windows"
+             href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases">
             Baixar para Windows
           </a>
-          <p class="detalhe" id="detalhe">
-            Gratuito para testar · 30 downloads
-          </p>
-
-          <!-- Avisar ANTES do susto. O instalador ainda nao e assinado
-               digitalmente, e o Windows mostra uma tela roxa dizendo
-               "fornecedor desconhecido". Quem e avisado clica em executar;
-               quem e pego de surpresa fecha e some. -->
-          <details class="aviso-windows">
-            <summary>O Windows vai avisar que o app é de “fornecedor desconhecido”</summary>
-            <p>
-              É esperado, e não quer dizer que tem algo errado com o arquivo.
-              O Windows mostra esse aviso para todo programa que ainda não tem
-              <strong>assinatura digital</strong> — um certificado que custa
-              caro e que a gente vai comprar quando o Renaload crescer.
-            </p>
-            <p>
-              Para instalar, clique em <strong>Mais informações</strong> e
-              depois em <strong>Executar assim mesmo</strong>.
-            </p>
-            <p>
-              Se quiser conferir que o arquivo é mesmo o nosso e chegou
-              inteiro, cada versão publica o código SHA-256 do instalador na
-              <a href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest">página
-              da versão</a>, junto com o comando para verificar no seu
-              computador.
-            </p>
-          </details>
+          <a class="botao secundario" id="baixar-mac"
+             href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases">
+            Baixar para Mac
+          </a>
         </div>
+        <p class="detalhe" id="detalhe">Grátis para testar · 30 downloads, sem cartão</p>
+        <p class="detalhe" id="detalhe-mac" hidden></p>
+
+        <!-- Avisar ANTES do susto: os dois sistemas mostram um alerta na
+             primeira abertura, porque o app ainda não tem certificado
+             pago. Quem é avisado segue; quem é pego de surpresa desiste. -->
+        <details class="primeira-vez">
+          <summary>Na primeira vez, o sistema vai pedir uma confirmação</summary>
+          <p>
+            <strong>Windows:</strong> se aparecer “fornecedor desconhecido”,
+            clique em <strong>Mais informações</strong> e depois em
+            <strong>Executar assim mesmo</strong>.
+          </p>
+          <p>
+            <strong>Mac:</strong> arraste o Renaload para Aplicativos e abra.
+            Se o Mac disser que não pode verificar o desenvolvedor, abra
+            <strong>Ajustes do Sistema → Privacidade e Segurança</strong> e
+            clique em <strong>Abrir Mesmo Assim</strong>.
+          </p>
+          <p>
+            É esperado: o aviso aparece para todo programa que ainda não tem
+            certificado de assinatura. Cada versão publica o código SHA-256
+            dos arquivos na
+            <a href="https://github.com/renatoaqoliveira-lab/renaload-releases/releases">página
+            de versões</a>, para você conferir que o arquivo é o nosso.
+          </p>
+        </details>
       </div>
       <img class="mascote" src="assets/renaload_mascot.png" alt="">
     </section>
@@ -94,82 +93,30 @@
       YouTube · YouTube Music · Instagram · TikTok · Facebook · Spotify · Deezer
     </p>
 
-    <section class="cartoes">
+    <section class="recursos" id="recursos">
       <article>
         <h2>Qualidade de verdade</h2>
-        <p>Até 4K, com o áudio oficial da faixa em vez do áudio do videoclipe. Vídeo em H.264, pronto para entrar no editor.</p>
+        <p>Vídeo até 4K em H.264, pronto para o editor. Áudio em MP3, M4A ou WAV, com artista, título e capa.</p>
       </article>
       <article>
-        <h2>Áudio como você precisa</h2>
-        <p>MP3, M4A ou WAV sem compressão — com artista, título e capa já gravados dentro do arquivo.</p>
+        <h2>Perfis inteiros</h2>
+        <p>Digite um perfil do Instagram ou do TikTok, marque as publicações e baixe tudo de uma vez.</p>
       </article>
       <article>
-        <h2>Lista de músicas</h2>
-        <p>Cole vários nomes de uma vez e baixe a lista inteira em lote, com o nome de arquivo que você escreveu.</p>
+        <h2>Listas e playlists</h2>
+        <p>Cole uma playlist ou vários nomes de música e baixe a lista toda, na ordem, em lote.</p>
       </article>
       <article>
         <h2>Legendas e recortes</h2>
-        <p>Baixe a legenda em .srt junto com o vídeo e, quando precisar, salve só o trecho que interessa.</p>
+        <p>Legenda em .srt junto com o vídeo, e só o trecho que interessa quando precisar.</p>
       </article>
-      <article>
-        <h2>Suas contas, seu login</h2>
-        <p>Entre no YouTube e no Instagram pela janela do próprio app quando um conteúdo exigir sessão.</p>
-      </article>
-      <article>
-        <h2>Playlists inteiras</h2>
-        <p>Cole o link de uma playlist do YouTube e baixe a lista toda, na ordem, sem repetir link por link.</p>
-      </article>
-      <article>
-        <h2>No seu ritmo</h2>
-        <p>Escolha quantos downloads correm ao mesmo tempo e limite a velocidade para não travar a sua internet.</p>
-      </article>
-      <article>
-        <h2>Sempre atualizado</h2>
-        <p>O app se atualiza sozinho para acompanhar as mudanças das plataformas.</p>
-      </article>
-    </section>
-
-    <section class="estudio">
-      <div class="estudio-texto">
-        <span class="etiqueta">Incluído</span>
-        <h2>Ache o perfil. Baixe os vídeos.</h2>
-        <p>
-          Digite o nome de um perfil do Instagram ou do TikTok e o Renaload
-          traz as publicações numa lista. Marque as que interessam e mande
-          baixar — sem abrir link por link, sem responder uma janela para
-          cada vídeo.
-        </p>
-        <ul class="lista-estudio">
-          <li>Busca por perfil no Instagram e no TikTok</li>
-          <li>Marque uma, várias ou todas as publicações e baixe em lote</li>
-          <li>Vídeo, foto e carrossel — tudo vai direto para a fila</li>
-          <li>Busca no YouTube e painel do que está em alta, com download direto</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="aviso">
-      <h2>Download legal, e só isso</h2>
-      <p>
-        O Renaload é uma ferramenta para baixar conteúdo <strong>seu</strong>,
-        conteúdo <strong>autorizado</strong> pelo titular dos direitos,
-        material <strong>livre de direitos</strong> ou em
-        <strong>domínio público</strong>, e conteúdo cujo download seja
-        <strong>permitido pela própria plataforma</strong>.
-      </p>
-      <p>
-        Ele não contorna bloqueio, proteção nem cobrança de nenhum serviço, e
-        não deve ser usado com essa finalidade. Verificar se você tem o direito
-        de baixar determinado conteúdo é responsabilidade de quem usa.
-      </p>
     </section>
 
     <section class="planos" id="planos">
       <h2>Quanto custa</h2>
       <p class="intro">
-        Teste com <strong>30 downloads gratuitos</strong>, sem cartão. Se
-        servir para você, escolha um plano — a licença vale para o
-        computador onde for ativada.
+        Teste com <strong>30 downloads gratuitos</strong>, sem cartão. A
+        licença vale para o computador onde for ativada.
       </p>
 
       <div class="grade-planos">
@@ -179,7 +126,7 @@
           <p class="equivale">Cancele quando quiser.</p>
           <ul>
             <li>Todos os recursos, sem limite de downloads</li>
-            <li>Atualizações enquanto a assinatura estiver ativa</li>
+            <li>Atualizações automáticas</li>
             <li>Suporte pelo WhatsApp</li>
           </ul>
           <a class="botao secundario"
@@ -192,11 +139,11 @@
           <span class="selo">MELHOR ESCOLHA</span>
           <h3>Anual</h3>
           <p class="valor">R$ 149<span> /ano</span></p>
-          <p class="equivale">Sai por R$ 12,42 por mês — você economiza R$ 90.</p>
+          <p class="equivale">R$ 12,42 por mês — você economiza R$ 90.</p>
           <ul>
             <li>Tudo do mensal, por 12 meses</li>
             <li>Ativação na hora, assim que o pagamento é aprovado</li>
-            <li>Preço travado: não muda durante o ano</li>
+            <li>Preço travado durante o ano</li>
           </ul>
           <a class="botao"
              href="https://mpago.la/2pU2kZ5">
@@ -207,15 +154,28 @@
 
       <p class="nota-planos">
         Já comprou? <a href="licenca.html">Recupere o seu token de ativação</a>.
-        Precisa de ajuda para escolher?
+        Dúvidas?
         <a href="https://wa.me/5511970617781?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20os%20planos%20do%20Renaload.">Fale no WhatsApp</a>.
       </p>
     </section>
 
+    <section class="aviso">
+      <h2>Download legal, e só isso</h2>
+      <p>
+        O Renaload é uma ferramenta para baixar conteúdo <strong>seu</strong>,
+        conteúdo <strong>autorizado</strong> pelo titular dos direitos,
+        material <strong>livre de direitos</strong> ou em
+        <strong>domínio público</strong>, e conteúdo cujo download seja
+        <strong>permitido pela própria plataforma</strong>. Ele não contorna
+        bloqueio, proteção nem cobrança de nenhum serviço. Verificar se você
+        tem o direito de baixar determinado conteúdo é responsabilidade de
+        quem usa.
+      </p>
+    </section>
   </main>
 
   <footer>
-    <span>Renaload · CNPJ 54.653.881/0001-79 · Windows</span>
+    <span>Renaload · CNPJ 54.653.881/0001-79 · Windows e Mac</span>
     <a href="privacidade.html">Privacidade</a>
     <a href="termos.html">Termos de uso</a>
     <a href="contato.html">Contato</a>
@@ -224,72 +184,89 @@
   </footer>
 
   <script>
-    // A versão vem da própria release do GitHub. Assim a página acompanha
-    // cada lançamento sozinha — antes o número e o nome do arquivo eram
-    // fixos no HTML e o botão passou a dar erro 404 quando saiu a versão
-    // seguinte, porque o arquivo antigo não existe na release nova.
+    // Cada botão aponta para o arquivo da versão MAIS NOVA que tem o
+    // instalador daquele sistema. Lê a lista de versões, e não só a
+    // "latest": Windows e Mac podem sair em dias diferentes, e uma versão
+    // só de Mac não pode deixar o botão do Windows sem arquivo.
     (function () {
-      // ⇩⇩ ÚNICA COISA A MUDAR PARA REABRIR O DOWNLOAD ⇩⇩
+      // ⇩⇩ ÚNICA COISA A MUDAR PARA PAUSAR O DOWNLOAD ⇩⇩
       var DOWNLOAD_LIBERADO = true;
-      // ⇧⇧ reaberto em 02/09/2026, na 1.7.9. O motivo do fechamento era
-      //    a 1.7.0 falhar em maquina limpa por causa dos cookies: a
-      //    prova de "conectado" era o TAMANHO do arquivo de cookies, e
-      //    nao um cookie de sessao com valor. Isso foi corrigido, e a
-      //    1.7.9 leva a correcao junto com o yt-dlp 2026.8.19, que
-      //    resolve o 403 do YouTube. ⇧⇧
 
-      var API = 'https://api.github.com/repos/renatoaqoliveira-lab/renaload-releases/releases/latest';
-      var botao = document.getElementById('baixar');
+      var API = 'https://api.github.com/repos/renatoaqoliveira-lab/renaload-releases/releases?per_page=20';
+      var win = document.getElementById('baixar-windows');
+      var mac = document.getElementById('baixar-mac');
       var detalhe = document.getElementById('detalhe');
+      var detalheMac = document.getElementById('detalhe-mac');
+      var acoes = document.getElementById('acoes');
 
-      if (!DOWNLOAD_LIBERADO) { return; }   // segue pausado
-      botao.classList.remove('desativado');
-      botao.removeAttribute('aria-disabled');
-      botao.textContent = 'Baixar para Windows';
-      botao.href = 'https://github.com/renatoaqoliveira-lab/renaload-releases/releases/latest';
-      detalhe.textContent = 'Gratuito para testar · 30 downloads';
+      // Quem visita de um Mac vê o botão do Mac primeiro, em destaque.
+      var ehMac = /Mac/i.test(navigator.platform || '') ||
+                  /Macintosh/i.test(navigator.userAgent || '');
 
-      function tamanho(bytes) {
-        return bytes ? (bytes / 1048576).toFixed(0) + ' MB · ' : '';
+      function destacar(principal, outro) {
+        acoes.insertBefore(principal, outro);
+        principal.classList.remove('secundario');
+        outro.classList.add('secundario');
+      }
+
+      function desativar(botao, texto) {
+        botao.textContent = texto;
+        botao.classList.add('desativado');
+        botao.setAttribute('aria-disabled', 'true');
+        botao.removeAttribute('href');
+      }
+
+      if (!DOWNLOAD_LIBERADO) {
+        desativar(win, 'Baixar para Windows');
+        desativar(mac, 'Baixar para Mac');
+        detalhe.textContent = 'Download pausado por alguns minutos para um ajuste.';
+        return;
+      }
+
+      function mb(bytes) { return bytes ? Math.round(bytes / 1048576) + ' MB · ' : ''; }
+      function versao(r) { return (r.tag_name || '').replace(/^v/, ''); }
+      function primeiro(rels, padrao) {
+        for (var i = 0; i < rels.length; i++) {
+          var r = rels[i];
+          if (r.draft || r.prerelease) { continue; }
+          var a = (r.assets || []).filter(function (x) { return padrao.test(x.name); })[0];
+          if (a) { return { rel: r, asset: a }; }
+        }
+        return null;
       }
 
       fetch(API, { headers: { Accept: 'application/vnd.github+json' } })
         .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-        .then(function (rel) {
-          var exe = (rel.assets || []).filter(function (a) {
-            return /\.exe$/i.test(a.name);
-          })[0];
-          if (exe) { botao.href = exe.browser_download_url; }
-          var versao = (rel.tag_name || '').replace(/^v/, '');
-          detalhe.textContent =
-            (versao ? 'Versão ' + versao + ' · ' : '') +
-            tamanho(exe && exe.size) + 'Gratuito para testar · 30 downloads';
+        .then(function (rels) {
+          var w = primeiro(rels, /\.exe$/i);
+          var m = primeiro(rels, /_mac_arm64\.dmg$/i);   // Apple Silicon (M1 em diante)
+          var mi = primeiro(rels, /_mac_x64\.dmg$/i);    // Mac com Intel
+          var temMac = m || mi;
 
-          // O arquivo .sha256 publicado junto da release permite conferir
-          // que o instalador baixou inteiro. Mostramos o código discreto,
-          // logo abaixo do botão, só quando a release realmente tem um.
-          var hashAsset = (rel.assets || []).filter(function (a) {
-            return /\.sha256$/i.test(a.name);
-          })[0];
-          if (!hashAsset) { return; }
-          fetch(hashAsset.browser_download_url)
-            .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
-            .then(function (txt) {
-              var hex = (txt.trim().split(/\s+/)[0] || '');
-              if (!/^[0-9a-f]{64}$/i.test(hex)) { return; }
-              var p = document.createElement('p');
-              p.className = 'checksum';
-              p.title = 'No PowerShell: Get-FileHash .\\' +
-                        (exe ? exe.name : 'instalador.exe') +
-                        ' -Algorithm SHA256';
-              p.textContent = 'SHA-256: ' + hex;
-              detalhe.parentNode.insertBefore(p, detalhe.nextSibling);
-            })
-            .catch(function () { /* sem checksum, sem alarde */ });
+          if (w) { win.href = w.asset.browser_download_url; }
+          if (temMac) {
+            mac.href = temMac.asset.browser_download_url;
+            if (ehMac) { destacar(mac, win); }
+          } else {
+            // Enquanto não houver .dmg publicado, o botão avisa em vez de
+            // levar a uma página sem arquivo para Mac.
+            desativar(mac, 'Mac — em breve');
+          }
+
+          var principal = (ehMac && temMac) ? temMac : w;
+          if (principal) {
+            detalhe.textContent = 'Versão ' + versao(principal.rel) + ' · ' +
+              mb(principal.asset.size) + 'Grátis para testar · 30 downloads';
+          }
+          if (m && mi) {
+            detalheMac.innerHTML = 'Mac com processador Intel? ' +
+              '<a href="' + mi.asset.browser_download_url + '">Baixe esta versão</a>.';
+            detalheMac.hidden = false;
+          }
         })
         .catch(function () {
-          // Sem internet ou API fora do ar: o link continua levando à
-          // página da última versão, que nunca fica desatualizada.
+          // Sem internet ou API fora do ar: os botões continuam levando à
+          // página de versões, que nunca fica desatualizada.
         });
     })();
   </script>
